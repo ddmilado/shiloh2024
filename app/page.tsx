@@ -17,7 +17,7 @@ export default function Home() {
 
   const currentDate = new Date();
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const formattedDate = currentDate.toLocaleDateString(undefined, options);
+  const formattedDate = currentDate.toLocaleDateString(undefined, options as Intl.DateTimeFormatOptions);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
