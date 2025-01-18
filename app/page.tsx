@@ -43,7 +43,7 @@ export default function Home() {
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
