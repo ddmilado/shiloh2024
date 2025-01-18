@@ -53,7 +53,8 @@ export default function Home() {
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-5 row-start-2 items-center sm:items-start">
-        <h2>Registration for today: {formattedDate}</h2>
+        <h1 className="text-2xl font-bold">WCI Dubai Transport Unit</h1>
+        <h2>Bus Registration for today: {formattedDate}</h2>
         <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4">
           <div className="flex flex-col w-full">
             <label className="mb-1 text-sm font-medium">Full Name</label>
@@ -70,16 +71,25 @@ export default function Home() {
           </div>
           <div className="flex flex-col w-full">
             <label className="mb-1 text-sm font-medium">Pick-Up Point</label>
-            <input
-              type="text"
+            <select
               name="pickupPoint"
-              placeholder="Pick-Up Point"
               value={formData.pickupPoint}
               onChange={handleInputChange}
               className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
               disabled={isSubmitting}
               required
-            />
+            >
+              <option value="" disabled>Select a pick-up point</option>
+              <option value="Ladies Park">Ladies Park</option>
+              <option value="Etisalat">Etisalat</option>
+              <option value="Hor Al Anz Turn-Off">Hor Al Anz Turn-Off</option>
+              <option value="Hamriya Big Mosque">Hamriya Big Mosque</option>
+              <option value="Excelsior Hotel">Excelsior Hotel</option>
+              <option value="Nesto Supermarket">Nesto Supermarket</option>
+              <option value="AL Ghurair Mall">AL Ghurair Mall</option>
+              <option value="Day to Day">Day to Day(Not Available on Sundays)</option>
+              {/* Add more options as needed */}
+            </select>
           </div>
           <div className="flex flex-col w-full">
             <label className="mb-1 text-sm font-medium">Phone Number</label>

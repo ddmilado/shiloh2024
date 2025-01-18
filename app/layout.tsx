@@ -14,8 +14,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "SHILOH 2024",
-  description: "Ever winning wisdom!",
+  title: "WCI Dubai Transport Unit",
+  description: "New Era 2025",
 };
 
 export default function RootLayout({
