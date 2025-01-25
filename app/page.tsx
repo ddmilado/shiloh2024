@@ -16,9 +16,9 @@ export default function Home() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const currentDate = new Date();
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const formattedDate = currentDate.toLocaleDateString(undefined, options as Intl.DateTimeFormatOptions);
+  //const currentDate = new Date();
+  //const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  //const formattedDate = currentDate.toLocaleDateString(undefined, options as Intl.DateTimeFormatOptions);
 
   const locationPickupPoints = {
     "Abu Hail": ["Ladies Park", "Etisalat", "Hor Al Anz Turn-Off", "Hamriya Big Mosque", "Excelsior Hotel", "Nesto Supermarket", "Al Ghurair Mall", "Day to Day(Not Available on Sundays)"],
@@ -63,7 +63,7 @@ export default function Home() {
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-5 row-start-2 items-center sm:items-start">
         <h1 className="text-2xl font-bold">WCI Dubai Transport Unit</h1>
-        <h2>Bus Registration for Sunday Service {formattedDate}</h2>
+        <h2>Bus Registration for Sunday Service</h2>
         <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4">
           <div className="flex flex-col w-full">
             <label className="mb-1 text-sm font-medium">Full Name</label>
