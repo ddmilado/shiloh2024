@@ -22,8 +22,8 @@ export default function Home() {
 
   const locationPickupPoints = {
     "Abu Hail": ["Ladies Park", "Etisalat", "Hor Al Anz Turn-Off", "Hamriya Big Mosque", "Excelsior Hotel", "Nesto Supermarket", "Al Ghurair Mall", "Day to Day(Not Available on Sundays)"],
-    "Al Nahda": ["Behind Lulu Hypermarket( 1st & 2nd Service)",  " Lulu hypermarket (3rd Service)" , "Lulu Legs Bridge (3rd Service)" , " Dubai Camel bridge (3rd Service)" , " Day to Day Opp. Sahara Tower (3rd Service)"],
-    "Satwa": ["Fillet King Restaurant (1st Service)" , "Al Maya Supermarket Backside (1st Service)" , "Chelsea Plaza (1st Service)" , "Fillet King Restaurant (2nd  Service)" , "Al Maya Supermarket Backside (2nd  Service)" , "Chelsea Plaza (2nd Service)"]
+    "Al Nahda": ["Behind Lulu Hypermarket ( 1st & 2nd Service)",  " Lulu hypermarket (3rd Service)" , "Lulu Legs Bridge (3rd Service)" , " Dubai Camel bridge (3rd Service)" , " Day to Day Opp. Sahara Tower (3rd Service)"],
+    "Satwa": ["Fillet King Restaurant (1st Service)" , "Al Maya Supermarket Backside (1st Service)" , "Chelsea Plaza (1st Service)" , "Fillet King Restaurant (3rd  Service)" , "Al Maya Supermarket Backside (3rd  Service)" , "Chelsea Plaza (3rd Service)"]
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
