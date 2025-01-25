@@ -10,6 +10,7 @@ const databases = new Databases(client);
 export default function Home() {
   const [formData, setFormData] = useState({
     fullName: "",
+    location: "",
     pickupPoint: "",
     phoneNumber: ""
   });
@@ -18,6 +19,12 @@ export default function Home() {
   const currentDate = new Date();
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const formattedDate = currentDate.toLocaleDateString(undefined, options as Intl.DateTimeFormatOptions);
+
+  const locationPickupPoints = {
+    "Abu Hail": ["Ladies Park", "Etisalat", "Hor Al Anz Turn-Off", "Hamriya Big Mosque", "Excelsior Hotel", "Nesto Supermarket", "Al Ghurair Mall", "Day to Day(Not Available on Sundays)"],
+    "Al Nahda": ["Behind Lulu Hypermarket( 1st & 2nd Service)",  " Lulu hypermarket (3rd Service)" , "Lulu Legs Bridge (3rd Service)" , " Dubai Camel bridge (3rd Service)" , " Day to Day Opp. Sahara Tower (3rd Service)"],
+    "Satwa": []
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,7 +41,7 @@ export default function Home() {
       
       console.log('Submission successful:', result);
       alert('Information submitted successfully!');
-      setFormData({ fullName: "", pickupPoint: "", phoneNumber: "" }); // Reset form
+      setFormData({ fullName: "", location: "", pickupPoint: "", phoneNumber: "" }); // Reset form
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('Error submitting information. Please try again.');
@@ -44,17 +51,19 @@ export default function Home() {
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+      ...(name === 'location' ? { pickupPoint: '' } : {})
+    }));
   };
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-5 row-start-2 items-center sm:items-start">
         <h1 className="text-2xl font-bold">WCI Dubai Transport Unit</h1>
-        <h2>Bus Registration for today: {formattedDate}</h2>
+        <h2>Bus Registration for Sunday Service.</h2>
         <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4">
           <div className="flex flex-col w-full">
             <label className="mb-1 text-sm font-medium">Full Name</label>
@@ -70,25 +79,35 @@ export default function Home() {
             />
           </div>
           <div className="flex flex-col w-full">
+            <label className="mb-1 text-sm font-medium">Location</label>
+            <select
+              name="location"
+              value={formData.location}
+              onChange={handleInputChange}
+              className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+              disabled={isSubmitting}
+              required
+            >
+              <option value="" disabled>Select your location</option>
+              {Object.keys(locationPickupPoints).map(location => (
+                <option key={location} value={location}>{location}</option>
+              ))}
+            </select>
+          </div>
+          <div className="flex flex-col w-full">
             <label className="mb-1 text-sm font-medium">Pick-Up Point</label>
             <select
               name="pickupPoint"
               value={formData.pickupPoint}
               onChange={handleInputChange}
               className="border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !formData.location}
               required
             >
               <option value="" disabled>Select a pick-up point</option>
-              <option value="Ladies Park">Ladies Park</option>
-              <option value="Etisalat">Etisalat</option>
-              <option value="Hor Al Anz Turn-Off">Hor Al Anz Turn-Off</option>
-              <option value="Hamriya Big Mosque">Hamriya Big Mosque</option>
-              <option value="Excelsior Hotel">Excelsior Hotel</option>
-              <option value="Nesto Supermarket">Nesto Supermarket</option>
-              <option value="AL Ghurair Mall">AL Ghurair Mall</option>
-              <option value="Day to Day">Day to Day(Not Available on Sundays)</option>
-              {/* Add more options as needed */}
+              {formData.location && locationPickupPoints[formData.location as keyof typeof locationPickupPoints].map(point => (
+                <option key={point} value={point}>{point}</option>
+              ))}
             </select>
           </div>
           <div className="flex flex-col w-full">
