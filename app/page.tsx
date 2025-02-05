@@ -17,7 +17,7 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const currentDate = new Date();
-  currentDate.setDate(currentDate.getDate() + 1);
+  currentDate.setDate(currentDate.getDate());
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
   const formattedDate = currentDate.toLocaleDateString(undefined, options as Intl.DateTimeFormatOptions);
 
